@@ -64,33 +64,43 @@ import './index.css'
 
 //----------------------------------------------------------------------------------------------------
 
-const book_1 = {
+const books = [
+{
   img: 'https://images-na.ssl-images-amazon.com/images/I/81eB%2B7%2BCkUL._AC_UL200_SR200,200_.jpg',
   title : 'I Love You to the Moon and Back',
   auther : 'Amelia Hepworth',
   add : 'Additional Text'
-};
-
-const book_2 = {
-  img: 'https://images-na.ssl-images-amazon.com/images/I/61xTjuVrwsL._SX375_BO1,204,203,200_.jpg',
+},
+{
+  img: 'https://images-na.ssl-images-amazon.com/images/I/81HCcHPXZnL._AC_UL200_SR200,200_.jpg',
   title : 'School Zone - Big Preschool Workbook',
   auther : 'Joan Hoffman',
   add : 'Additional Text 2'
-};
+},
+{
+  img: 'https://images-na.ssl-images-amazon.com/images/I/71e5m7xQd0L._AC_UL200_SR200,200_.jpg',
+  title: 'The Vanishing Half: A Novel',
+  auther: 'Brit Bennett',
+  add : 'Additional Text 3'
+},
+];
 
 function Booklist() {
   return (
     <section className= 'Booklist'>
-      <Book book = {book_1}/>
-      <Book book = {book_2}/>
+      {/* map method will iterate through the list. onbook will be a single list item in each iteration */}
+      {books.map((oneBook) => {
+        const {img ,  title , auther , add} = oneBook;
+        return (<Book book = {oneBook}></Book> )
+      })}
     </section>
   );
 }
 
 
 function Book(bookVar){
-  console.log(bookVar)
-  console.log(bookVar.book.img)
+  console.log(bookVar);
+  console.log(bookVar.book);
   return (
     <article className='Book'>
       {/* bookVar is the local input variable inside of the function */}
@@ -99,9 +109,7 @@ function Book(bookVar){
       <Imagess img = {bookVar.book.img} > </Imagess> 
       <Title title = {bookVar.book.title}> </Title> 
       <Author auth = {bookVar.book.auther}> </Author>
-      <Additional add = {bookVar.book.add}>
-        <p>Lorem ipsum dolor sit amit.</p>
-      </Additional>
+      <Additional add = {bookVar.book.add}> </Additional>
     </article>
   )
 }
@@ -130,8 +138,6 @@ const Additional = (add) => {
   return (
     <div>
       <p>{add.add}</p>
-      {/* Accessing the children elements of 'Additional' componant Elements */}
-      {add.children}
     </div>
     )
 };
